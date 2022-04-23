@@ -108,7 +108,7 @@ def get_route(hostname):
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     # You should add the list above to your all traces list
-                    tracelist2.append([ttl,"*","Request timed out"])
+                    tracelist2.append([str(ttl),"*","Request timed out"])
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 hopAddr = addr[0]
@@ -118,7 +118,7 @@ def get_route(hostname):
                     #tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     # You should add the list above to your all traces list
-                    tracelist2.append([ttl,"*","Request timed out"])
+                    tracelist2.append([str(ttl),"*","Request timed out"])
                     #Fill in end
             except timeout:
                 continue
@@ -142,7 +142,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     hopTime = (timeReceived-t)*1000
-                    tracelist1 = [ttl, hopTime, hopAddr, hopName]
+                    tracelist1 = [str(ttl), str(hopTime), hopAddr, hopName]
                     # You should add your responses to your lists here
                     tracelist2.append(tracelist1)
                     #Fill in end
@@ -161,7 +161,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     hopTime = (timeReceived - timeSent)*1000
-                    tracelist1 = [ttl, hopTime, hopAddr, hopName]
+                    tracelist1 = [str(ttl), str(hopTime), hopAddr, hopName]
                     # You should add your responses to your lists here and return your list if your destination IP is met
                     tracelist2.append(tracelist1)
                     return tracelist2
@@ -178,4 +178,4 @@ def get_route(hostname):
 
 if __name__ == '__main__':
     trace = get_route("google.com")
-    print(trace)
+    #print(trace)
